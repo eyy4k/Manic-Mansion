@@ -11,11 +11,14 @@ clock = pg.time.Clock()
 coin_sound = pg.mixer.Sound("bilder/gulllyd.mp3")
 coin_sound.set_volume(0.5)
 
-gull_liste = [
-    Gullmynter(900, 300),
-    Gullmynter(800, 400),
-    Gullmynter(850, 150)
-]
+gull_liste: List[Gullmynter] = []
+for i in range(3):
+    rand_x = rd.randint(VINDU_BREDDE//3*2, VINDU_BREDDE)
+    rand_y = rd.randint(0, VINDU_HOYDE)
+    mynter = Gullmynter(rand_x,rand_y)
+    gull_liste.append(mynter)
+
+
 
 platforms: List[Platform] = []
 
