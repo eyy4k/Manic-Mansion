@@ -14,33 +14,51 @@ class Spøkelse:
         self.rect = self.image.get_rect(topleft=(x, y))
         self.retning = rd.choice(['venstre', 'opp', 'ned', 'hoyre'])
         self.flytt_timer = 0
+        self.vy = 2 
+        self.vx = 2 
 
     def flytt(self):
-        vx = 2
-        vy = 2 
+        
         self.flytt_timer += 1 
         
         if self.flytt_timer > 60:
             self.retning = rd.choice(['venstre', 'opp', 'ned', 'hoyre'])
+    
         
         if self.retning == 'venstre':
-            self.rect.x -= vx
+            self.vx = -2
+            self.vy = 0
         if self.retning == 'hoyre':
-            self.rect.x += vx
+            self.vx = 2
+            self.vy = 0
         if self.retning == 'ned':
-            self.rect.y += vy
+            self.vx = 0
+            self.vy = -2
         if self.retning == 'opp':
-            self.rect.y += vy
+            self.vx = 0
+            self.vy = 2
         
         #TODO
         #Kollisjon mellom VINDU_BREDDE 
         
-        if self.rect.left <= VINDU_BREDDE // 3 or self.rect.right >= (VINDU_BREDDE // 3) * 2:
-           vx *= -1
+        self.rect.x += self.vx
+        self.rect.y += self.vy
         
-        self.rect.x += vx
-    
-  
+        if self.rect.left <= VINDU_BREDDE // 3:
+            self.rect.left = VINDU_BREDDE // 3
+            self.vx *= -1
+        
+        elif self.rect.right >= (VINDU_BREDDE // 3) * 2:
+           self.rect.right = (VINDU_BREDDE // 3) * 2
+           self.vx *= -1
+            
+        if self.rect.top <= 0:
+            self.rect.top = 0
+            self.vy*= -1 
+        elif self.rect.bottom >= VINDU_HOYDE:
+            self.rect.bottom = VINDU_HOYDE
+            self.vy*= -1 
+        
     def tegn(self, vindu: pg.Surface):
         vindu.blit(self.image, self.rect)
 
