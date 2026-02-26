@@ -3,6 +3,7 @@ from constants import *
 from objekt import *
 
 pg.init()
+pg.mixer.init()
 vindu = pg.display.set_mode([VINDU_BREDDE, VINDU_HOYDE])
 clock = pg.time.Clock()
 
@@ -11,6 +12,16 @@ platforms = [
     pg.Rect((300, 250, 150, 20)),
     pg.Rect((300, 200, 200, 20))
 ]
+coin_sound = pg.mixer.Sound("gulllyd.mp3")
+coin_sound.set_volume(0.5)
+
+gull_liste = [
+    Gullmynter(300, 200),
+    Gullmynter(400, 300),
+    Gullmynter(600, 150)
+]
+
+platforms = []
 
 spøkelse1 = Spøkelse(200,200)
 
@@ -32,6 +43,9 @@ while running:
     spøkelse1.flytt()
     
 
+    for gull in gull_liste:
+        gull.tegn(vindu)
+    
 
     pg.display.flip()
     clock.tick(FPS)
