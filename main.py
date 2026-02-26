@@ -6,9 +6,11 @@ pg.init()
 vindu = pg.display.set_mode([VINDU_BREDDE, VINDU_HOYDE])
 clock = pg.time.Clock()
 
-platforms = []
-
-platform1 = pg.Rect((100, 100, 100, 20))
+platforms = [
+    pg.Rect((100, 100, 100, 20)),
+    pg.Rect((300, 250, 150, 20)),
+    pg.Rect((300, 200, 200, 20))
+]
 
 running = True
 while running:
@@ -18,6 +20,10 @@ while running:
 
     vindu.fill(BLUE)
     pg.draw.rect(vindu, PURPLE, (0, 700, VINDU_BREDDE, (VINDU_BREDDE- 750)))
+    
+    #Tegner hindringer
+    for p in platforms:
+        pg.draw.rect(vindu, PURPLE, p)
 
     
 
