@@ -45,10 +45,9 @@ class Spiller:
         if keys[pg.K_d]:
             self.rect.x += self.speed
 
-    def draw(self, vindu: pg.Surface):
+    def tegnspiller(self, vindu: pg.Surface):
         vindu.blit(self.image, self.rect)
         
-
 
 
 
