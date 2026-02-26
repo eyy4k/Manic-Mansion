@@ -18,7 +18,10 @@ gull_liste = [
 
 platforms = []
 
-spøkelse1 = Spøkelse(200,200)
+rand_x = rd.randint(VINDU_BREDDE//3, (VINDU_BREDDE//3 *2 ))
+rand_y = rd.randint(0, VINDU_HOYDE)
+
+spøkelse1 = Spøkelse(rand_x,rand_y)
 
 spiller = Spiller(100,100)
 
