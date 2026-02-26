@@ -48,7 +48,7 @@ class Spiller:
 
         self.coins = 0
         self.speed = 4
-    def move(self):
+    def flytt(self):
         keys = pg.key.get_pressed()
         if keys[pg.K_w]:
             self.rect.y -= self.speed
