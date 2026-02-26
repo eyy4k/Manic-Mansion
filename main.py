@@ -44,8 +44,6 @@ while running:
     spiller.flytt()
     
 
-
-
     for gull in gull_liste[:]:
         if spiller.rect.colliderect(gull.rect):
             spiller.coins += 1
