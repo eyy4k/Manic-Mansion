@@ -33,6 +33,7 @@ class Spiller:
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
 
+        self.coins = 0
         self.speed = 4
     def move(self):
         keys = pg.key.get_pressed()
@@ -47,6 +48,22 @@ class Spiller:
 
     def tegnspiller(self, vindu: pg.Surface):
         vindu.blit(self.image, self.rect)
+
+
+class Gullmynter:
+    def __init__(self, x: int, y: int):
+        self.image = pg.image.load("gull.png").convert_alpha()
+        self.image = pg.transform.scale(self.image,
+            (50, 50)
+    
+        )
+        self.rect = self.image.get_rect(topleft=(x, y))
+
+
+    def tegn(self, vindu: pg.Surface):
+        vindu.blit(self.image, self.rect)
+    
+        
         
 
 
