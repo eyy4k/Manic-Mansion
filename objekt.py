@@ -88,6 +88,12 @@ class Spiller:
         if keys[pg.K_d]:
             self.rect.x += self.speed
 
+    def kolisjon(self, x: int, y: int):
+        self.rect.left = max(self.rect.left, 0)
+        self.rect.right = min(self.rect.right, x)
+        self.rect.top = max(self.rect.top, 0)
+        self.rect.bottom = min(self.rect.bottom, y)
+
     def tegnspiller(self, vindu: pg.Surface):
         vindu.blit(self.image, self.rect)
 
