@@ -90,16 +90,35 @@ class Spiller:
 
         self.coins = 0
         self.speed = 4
-    def flytt(self):
+    def flytt(self, platforms: List[Platform]):
         keys = pg.key.get_pressed()
+        dx = dy = 0
         if keys[pg.K_w]:
-            self.rect.y -= self.speed
+            dy -= self.speed
         if keys[pg.K_s]:
-            self.rect.y += self.speed
+            dy += self.speed
         if keys[pg.K_a]:
-            self.rect.x -= self.speed
+            dx -= self.speed
         if keys[pg.K_d]:
-            self.rect.x += self.speed
+            dx += self.speed
+            
+        #kollisjon platform
+        self.rect.x += dx
+        for p in platforms: 
+            if self.rect.colliderect(p.rect):
+                if dx > 0: 
+                    self.rect.right = p.rect.left
+                elif dx < 0:
+                    self.rect.left = p.rect.right
+                    
+        self.rect.y += dy
+        for p in platforms: 
+            if self.rect.colliderect(p.rect):
+                if dy > 0: 
+                    self.rect.bottom = p.rect.top
+                elif dy < 0:
+                    self.rect.top = p.rect.bottom
+                   
 
     def kolisjon(self, x: int, y: int):
         self.rect.left = max(self.rect.left, 0)

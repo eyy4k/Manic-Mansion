@@ -1,6 +1,7 @@
 import pygame as pg
 from constants import *
 from objekt import *
+from typing import List
 
 pg.init()
 pg.mixer.init()
@@ -27,7 +28,7 @@ for _ in range(5):
     platforms.append(Platform(x,y,bredde,hoyde))
 
 
-from typing import List
+
 
 spøkelser: List[Spøkelse] = []
 for i in range(3):
@@ -59,7 +60,7 @@ while running:
 
     #Tegner Spiller
     spiller.tegnspiller(vindu)
-    spiller.flytt()
+    spiller.flytt(platforms)
     spiller.kolisjon(VINDU_BREDDE, VINDU_HOYDE)
     
     #kollksjon gull
