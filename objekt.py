@@ -12,26 +12,37 @@ class Spøkelse:
     
         )
         self.rect = self.image.get_rect(topleft=(x, y))
+        self.retning = rd.choice(['venstre', 'opp', 'ned', 'hoyre'])
+        self.flytt_timer = 0
 
     def flytt(self):
+        vx = 2
+        vy = 2 
+        self.flytt_timer += 1 
         
-        if rd.randint(1,100) > 30:
-            self.rect.x += 1 
-        elif rd.randint(1,100) > 30:
-            self.rect.y += 1 
-        elif rd.randint(1, 100) > 40:
-            self.rect.x -= 1 
-        elif rd.randint(1, 100) < 20:
-            self.rect.y -=1 
-         
+        if self.flytt_timer > 60:
+            self.retning = rd.choice(['venstre', 'opp', 'ned', 'hoyre'])
         
+        if self.retning == 'venstre':
+            self.rect.x -= vx
+        if self.retning == 'hoyre':
+            self.rect.x += vx
+        if self.retning == 'ned':
+            self.rect.y += vy
+        if self.retning == 'opp':
+            self.rect.y += vy
+        
+        #TODO
+        #Kollisjon mellom VINDU_BREDDE 
+        
+        if self.rect.left <= VINDU_BREDDE // 3 or self.rect.right >= (VINDU_BREDDE // 3) * 2:
+           vx *= -1
+        
+        self.rect.x += vx
+    
   
     def tegn(self, vindu: pg.Surface):
         vindu.blit(self.image, self.rect)
-
-
-
-
 
 
 
