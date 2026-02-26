@@ -1,7 +1,17 @@
 import pygame as pg
 import random as rd
+from typing import List
 from constants import *
 
+class Platform: 
+    def __init__(self, x: int, y: int, bredde: int, hoyde: int, farge: tuple[int, int, int] =(100, 100, 255) ):
+        self.bredde = bredde
+        self.hoyde = hoyde
+        self.farge = farge
+        self.rect = pg.Rect(x,y,bredde, hoyde)
+        
+    def tegn(self, vindu: pg.Surface):
+        pg.draw.rect(vindu, self.farge, self.rect)          
 
 class Spøkelse:
     def __init__(self, x: int, y: int):
@@ -12,34 +22,18 @@ class Spøkelse:
     
         )
         self.rect = self.image.get_rect(topleft=(x, y))
-        self.retning = rd.choice(['venstre', 'opp', 'ned', 'hoyre'])
         self.flytt_timer = 0
-        self.vy = 2 
-        self.vx = 2 
+        self.vy = rd.choice([-2, 0, 2])
+        self.vx = rd.choice([-2, 0, 2])
 
-    def flytt(self):
+    def flytt(self, platforms: List[Platform]):
         
         self.flytt_timer += 1 
         
         if self.flytt_timer > 60:
-            self.retning = rd.choice(['venstre', 'opp', 'ned', 'hoyre'])
-    
-        
-        if self.retning == 'venstre':
-            self.vx = -2
-            self.vy = 0
-        if self.retning == 'hoyre':
-            self.vx = 2
-            self.vy = 0
-        if self.retning == 'ned':
-            self.vx = 0
-            self.vy = -2
-        if self.retning == 'opp':
-            self.vx = 0
-            self.vy = 2
-        
-        #TODO
-        #Kollisjon mellom VINDU_BREDDE 
+            self.vy = rd.choice([-2, 0, 2])
+            self.vx = rd.choice([-2, 0, 2])
+            self.flytt_timer = 0
         
         self.rect.x += self.vx
         self.rect.y += self.vy
@@ -58,9 +52,28 @@ class Spøkelse:
         elif self.rect.bottom >= VINDU_HOYDE:
             self.rect.bottom = VINDU_HOYDE
             self.vy*= -1 
+            
+        #kollisjon platformer
+        for p in platforms: 
+            if self.rect.colliderect(p.rect):
+                if self.vy > 0 and self.rect.bottom > p.rect.top: #faller på platfom
+                    self.rect.bottom = p.rect.top
+                    self.vy *= -1
+                elif self.vy < 0 and self.rect.top < p.rect.bottom: #kollisjon underifra
+                    self.rect.top = p.rect.bottom
+                    self.vy *= -1
+                    
+                if self.vx > 0 and self.rect.right > p.rect.left: #venstre
+                    self.rect.right = p.rect.left
+                    self.vx *= -1
+                elif self.vx < 0 and self.rect.left < p.rect.right: #høyre
+                    self.rect.left = p.rect.right
+                    self.vx *= -1
+            
         
     def tegn(self, vindu: pg.Surface):
         vindu.blit(self.image, self.rect)
+
 
 
 
@@ -112,8 +125,3 @@ class Gullmynter:
         vindu.blit(self.image, self.rect)
     
         
-        
-
-
-
-
