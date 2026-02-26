@@ -107,7 +107,7 @@ class Spiller:
         for p in platforms: 
             if self.rect.colliderect(p.rect):
                 if dx > 0: 
-                    self.rect.right = p.rect.left
+                    self.rect.right = p.rect.left 
                 elif dx < 0:
                     self.rect.left = p.rect.right
                     
@@ -125,6 +125,12 @@ class Spiller:
         self.rect.right = min(self.rect.right, x)
         self.rect.top = max(self.rect.top, 0)
         self.rect.bottom = min(self.rect.bottom, y)
+    
+    def kollisjon_spøkelse(self, spøkelser: List[Spøkelse]):
+        for s in spøkelser:
+            if self.rect.colliderect(s.rect):
+                return True
+            return False
 
     def tegnspiller(self, vindu: pg.Surface):
         vindu.blit(self.image, self.rect)

@@ -86,6 +86,13 @@ while running:
                 s1.rect.x += s2.vx
                 s1.rect.y += s1.vy
                 s2.rect.y += s2.vy
+    
+    #kollisjon mellom spøkelser og Spiller
+    if spiller.kollisjon_spøkelse(spøkelser):
+        #TODO vet ikke hva som skal skje etter kollisjon 
+        print("traff en spøkelse")
+        
+            
                  
     #Tegner Gull
     for gull in gull_liste:
