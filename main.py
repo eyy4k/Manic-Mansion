@@ -69,7 +69,7 @@ while running:
             spiller.coins += 1
             coin_sound.play()
             gull_liste.remove(gull)
-
+    """
     #kollisjon mellom spøkelser 
     for i in range(len(spøkelser)):
         for j in range(i + 1, len(spøkelser)):
@@ -86,6 +86,7 @@ while running:
                 s1.rect.x += s2.vx
                 s1.rect.y += s1.vy
                 s2.rect.y += s2.vy
+    """
     
     #kollisjon mellom spøkelser og Spiller
     if spiller.kollisjon_spøkelse(spøkelser):

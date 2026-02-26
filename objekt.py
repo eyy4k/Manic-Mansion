@@ -52,7 +52,8 @@ class Spøkelse:
         elif self.rect.bottom >= VINDU_HOYDE:
             self.rect.bottom = VINDU_HOYDE
             self.vy*= -1 
-            
+        
+        """
         #kollisjon platformer
         for p in platforms: 
             if self.rect.colliderect(p.rect):
@@ -69,7 +70,7 @@ class Spøkelse:
                 elif self.vx < 0 and self.rect.left < p.rect.right: #høyre
                     self.rect.left = p.rect.right
                     self.vx *= -1
-            
+        """
         
     def tegn(self, vindu: pg.Surface):
         vindu.blit(self.image, self.rect)
