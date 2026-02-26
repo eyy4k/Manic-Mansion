@@ -16,25 +16,4 @@ class Spøkelse:
     def tegn(self, vindu: pg.Surface):
         vindu.blit(self.image, self.rect)
 
-        
 
-
-
-
-"""
-
-        self.speed = 4
-    def move(self):
-        if keys[pg.K_w]:
-            self.rect.y -= self.speed
-        if keys[pg.K_s]:
-            self.rect.y += self.speed
-        if keys[pg.K_a]:
-            self.rect.x -= self.speed
-        if keys[pg.K_d]:
-            self.rect.x += self.speed
-
-    def draw(self, vindu):
-        vindu.blit(self.image, self.rect)
-        
-"""
