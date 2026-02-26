@@ -12,6 +12,8 @@ platforms = [
     pg.Rect((300, 200, 200, 20))
 ]
 
+spøkelse1 = Spøkelse(200,200)
+
 running = True
 while running:
     for event in pg.event.get():
@@ -25,6 +27,9 @@ while running:
     for p in platforms:
         pg.draw.rect(vindu, PURPLE, p)
 
+    #Tegner spøkelser
+    spøkelse1.tegn(vindu)
+    spøkelse1.flytt()
     
 
 

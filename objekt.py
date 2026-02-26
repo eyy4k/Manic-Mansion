@@ -1,4 +1,5 @@
 import pygame as pg
+import random as rd
 from constants import *
 
 
@@ -12,7 +13,18 @@ class Spøkelse:
         )
         self.rect = self.image.get_rect(topleft=(x, y))
 
-
+    def flytt(self):
+        
+        if rd.randint(1,100) > 30:
+            self.rect.x += 1 
+        elif rd.randint(1,100) > 30:
+            self.rect.y += 1 
+        elif rd.randint(1, 100) > 40:
+            self.rect.x -= 1 
+        elif rd.randint(1, 100) < 20:
+            self.rect.y -=1 
+         
+        
     def tegn(self, vindu: pg.Surface):
         vindu.blit(self.image, self.rect)
 
