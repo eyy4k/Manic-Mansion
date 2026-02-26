@@ -5,7 +5,7 @@ from constants import *
 
 class Spøkelse:
     def __init__(self, x: int, y: int):
-        self.image = pg.image.load("spøkelse.png").convert_alpha()
+        self.image = pg.image.load("bilder/spøkelse.png").convert_alpha()
         self.image = pg.transform.scale(
             self.image,
             (75, 75)
@@ -48,7 +48,7 @@ class Spøkelse:
 
 class Spiller: 
     def __init__(self, x: int, y: int):
-        self.image = pg.image.load("pacman.png").convert_alpha()
+        self.image = pg.image.load("bilder/pacman.png").convert_alpha()
         self.image = pg.transform.scale(self.image,
             (75, 75)
     
@@ -59,7 +59,7 @@ class Spiller:
 
         self.coins = 0
         self.speed = 4
-    def move(self):
+    def flytt(self):
         keys = pg.key.get_pressed()
         if keys[pg.K_w]:
             self.rect.y -= self.speed
@@ -76,7 +76,7 @@ class Spiller:
 
 class Gullmynter:
     def __init__(self, x: int, y: int):
-        self.image = pg.image.load("gull.png").convert_alpha()
+        self.image = pg.image.load("bilder/gull.png").convert_alpha()
         self.image = pg.transform.scale(self.image,
             (50, 50)
     

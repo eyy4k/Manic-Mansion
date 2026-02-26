@@ -7,18 +7,13 @@ pg.mixer.init()
 vindu = pg.display.set_mode([VINDU_BREDDE, VINDU_HOYDE])
 clock = pg.time.Clock()
 
-platforms = [
-    pg.Rect((100, 100, 100, 20)),
-    pg.Rect((300, 250, 150, 20)),
-    pg.Rect((300, 200, 200, 20))
-]
-coin_sound = pg.mixer.Sound("gulllyd.mp3")
+coin_sound = pg.mixer.Sound("bilder/gulllyd.mp3")
 coin_sound.set_volume(0.5)
 
 gull_liste = [
-    Gullmynter(300, 200),
-    Gullmynter(400, 300),
-    Gullmynter(600, 150)
+    Gullmynter(900, 300),
+    Gullmynter(800, 400),
+    Gullmynter(850, 150)
 ]
 
 platforms = []
@@ -27,6 +22,8 @@ rand_x = rd.randint(VINDU_BREDDE//3, (VINDU_BREDDE//3 *2 ))
 rand_y = rd.randint(0, VINDU_HOYDE)
 
 spøkelse1 = Spøkelse(rand_x,rand_y)
+
+spiller = Spiller(100,100)
 
 running = True
 while running:
@@ -44,8 +41,19 @@ while running:
     #Tegner spøkelser
     spøkelse1.tegn(vindu)
     spøkelse1.flytt()
+
+    #Tegner Spiller
+    spiller.tegnspiller(vindu)
+    spiller.flytt()
     
 
+    for gull in gull_liste[:]:
+        if spiller.rect.colliderect(gull.rect):
+            spiller.coins += 1
+            coin_sound.play()
+            gull_liste.remove(gull)
+    
+    #Tegner Gull
     for gull in gull_liste:
         gull.tegn(vindu)
     
