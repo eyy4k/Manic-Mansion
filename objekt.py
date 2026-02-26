@@ -12,6 +12,14 @@ class Spøkelse:
         )
         self.rect = self.image.get_rect(topleft=(x, y))
 
+    """  self.retning = 
+   
+   
+    def bevegelse(self, )
+
+
+    """
+
 
     def tegn(self, vindu: pg.Surface):
         vindu.blit(self.image, self.rect)
