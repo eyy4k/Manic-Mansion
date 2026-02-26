@@ -42,6 +42,7 @@ while running:
     #Tegner Spiller
     spiller.tegnspiller(vindu)
     spiller.flytt()
+    spiller.kolisjon(VINDU_BREDDE, VINDU_HOYDE)
     
 
     for gull in gull_liste[:]:
@@ -49,6 +50,8 @@ while running:
             spiller.coins += 1
             coin_sound.play()
             gull_liste.remove(gull)
+
+    
     
     #Tegner Gull
     for gull in gull_liste:
