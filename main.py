@@ -7,16 +7,7 @@ pg.mixer.init()
 vindu = pg.display.set_mode([VINDU_BREDDE, VINDU_HOYDE])
 clock = pg.time.Clock()
 
-<<<<<<< HEAD
 coin_sound = pg.mixer.Sound("bilder/gulllyd.mp3")
-=======
-platforms = [
-    pg.Rect((100, 100, 100, 20)),
-    pg.Rect((300, 250, 150, 20)),
-    pg.Rect((300, 200, 200, 20))
-]
-coin_sound = pg.mixer.Sound("gulllyd.mp3")
->>>>>>> 928e7ea6352428a0f085d61065e8befa657efe7c
 coin_sound.set_volume(0.5)
 
 gull_liste = [
