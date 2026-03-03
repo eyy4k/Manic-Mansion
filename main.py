@@ -11,8 +11,11 @@ clock = pg.time.Clock()
 coin_sound = pg.mixer.Sound("bilder/gulllyd.mp3")
 coin_sound.set_volume(0.5)
 
+dødsoundeffect = pg.mixer.Sound("bilder/death.mp3")
+dødsoundeffect.set_volume(0.7)
+
 endesone_sound = pg.mixer.Sound("bilder/forsvinne.mp3")
-endesone_sound.set_volume(0.5)
+endesone_sound.set_volume(1)
 
 gull_liste: List[Gullmynter] = []
 for i in range(3):
@@ -124,6 +127,8 @@ while running:
     
     #kollisjon mellom spøkelser og Spiller
     if spiller.kollisjon_spøkelse(spøkelser):
+        dødsoundeffect.play()
+        pg.time.delay(1000)
         #slutter programmet
         running = False
         
