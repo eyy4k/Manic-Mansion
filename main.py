@@ -19,8 +19,11 @@ print(width, height)
 coin_sound = pg.mixer.Sound("bilder/gulllyd.mp3")
 coin_sound.set_volume(0.5)
 
+dødsoundeffect = pg.mixer.Sound("bilder/death.mp3")
+dødsoundeffect.set_volume(0.7)
+
 endesone_sound = pg.mixer.Sound("bilder/forsvinne.mp3")
-endesone_sound.set_volume(0.5)
+endesone_sound.set_volume(1)
 
 gull_liste: List[Gullmynter] = []
 for i in range(3):
@@ -96,6 +99,12 @@ while running:
         spiller.carriescoin = False
         spiller.coins += 1
         endesone_sound.play()
+     
+         # Lager en ny gullmynt
+        rand_x = rd.randint(VINDU_BREDDE//3*2, VINDU_BREDDE)
+        rand_y = rd.randint(0, VINDU_HOYDE)
+        ny_mynt = Gullmynter(rand_x, rand_y)
+        gull_liste.append(ny_mynt)
 
         #Legger til en spøkelse
         spøkelse1 = Spøkelse(rd.randint(VINDU_BREDDE//3, (VINDU_BREDDE//3 *2 )),rd.randint(0, VINDU_HOYDE))
@@ -131,7 +140,10 @@ while running:
                 s2.rect.y += s2.vy
     """
     
-    #
+    #kollisjon mellom spøkelser og Spiller
+    if spiller.kollisjon_spøkelse(spøkelser):
+        #slutter programmet
+        running = False
         
                  
     #Tegner Gull
