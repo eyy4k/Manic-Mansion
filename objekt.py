@@ -80,8 +80,8 @@ class Spøkelse:
 
 class Spiller: 
     def __init__(self, x: int, y: int):
-        self.image = pg.image.load("bilder/pacman.png").convert_alpha()
-        self.image = pg.transform.scale(self.image,    (75, 75)   )
+        self.image = pg.image.load("bilder/båt.png").convert_alpha()
+        self.image = pg.transform.scale(self.image,    (100, 100)   )
         self.imageRight = self.image
         self.imageLeft = pg.transform.flip(self.image, True, False)
         self.rect = self.image.get_rect()
