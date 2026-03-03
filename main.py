@@ -81,6 +81,20 @@ while running:
         spiller.carriescoin = False
         spiller.coins += 1
 
+        #Legger til en spøkelse
+        spøkelse1 = Spøkelse(rd.randint(VINDU_BREDDE//3, (VINDU_BREDDE//3 *2 )),rd.randint(0, VINDU_HOYDE))
+        spøkelser.append(spøkelse1)
+        
+        #Legger til en hindring
+        bredde = rd.randint(50, 150)
+        hoyde = 20
+        x = rd.randint(0, VINDU_BREDDE - bredde)
+        y = rd.randint(50, VINDU_HOYDE - hoyde)
+        platforms.append(Platform(x,y,bredde,hoyde))
+        
+        
+        
+
     
     """
     #kollisjon mellom spøkelser 
