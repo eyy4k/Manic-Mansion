@@ -99,6 +99,12 @@ while running:
         spiller.carriescoin = False
         spiller.coins += 1
         endesone_sound.play()
+     
+         # Lager en ny gullmynt
+        rand_x = rd.randint(VINDU_BREDDE//3*2, VINDU_BREDDE)
+        rand_y = rd.randint(0, VINDU_HOYDE)
+        ny_mynt = Gullmynter(rand_x, rand_y)
+        gull_liste.append(ny_mynt)
 
         #Legger til en spøkelse
         spøkelse1 = Spøkelse(rd.randint(VINDU_BREDDE//3, (VINDU_BREDDE//3 *2 )),rd.randint(0, VINDU_HOYDE))
