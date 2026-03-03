@@ -133,7 +133,7 @@ class Spiller:
         for s in spøkelser:
             if self.rect.colliderect(s.rect):
                 return True
-            return False
+        return False
 
     def tegnspiller(self, vindu: pg.Surface):
         vindu.blit(self.image, self.rect)

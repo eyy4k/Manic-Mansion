@@ -12,6 +12,8 @@ clock = pg.time.Clock()
 bgsti = Path(__file__).parent / "bilder" / "background.png"
 original_bg = pg.image.load(bgsti).convert_alpha()
 
+
+
 width, height = original_bg.size
 print(width, height)
 
