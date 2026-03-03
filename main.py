@@ -103,10 +103,9 @@ while running:
     
     #kollisjon mellom spøkelser og Spiller
     if spiller.kollisjon_spøkelse(spøkelser):
-        #TODO vet ikke hva som skal skje etter kollisjon 
-        print("traff en spøkelse")
+        #slutter programmet
+        running = False
         
-            
                  
     #Tegner Gull
     for gull in gull_liste:
