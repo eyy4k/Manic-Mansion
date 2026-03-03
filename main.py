@@ -9,7 +9,7 @@ pg.mixer.init()
 vindu = pg.display.set_mode([VINDU_BREDDE, VINDU_HOYDE])
 clock = pg.time.Clock()
 
-bgsti = Path(__file__).parent / "bilder" / "image.png"
+bgsti = Path(__file__).parent / "bilder" / "background.png"
 original_bg = pg.image.load(bgsti).convert_alpha()
 
 width, height = original_bg.size
@@ -131,10 +131,7 @@ while running:
                 s2.rect.y += s2.vy
     """
     
-    #kollisjon mellom spøkelser og Spiller
-    if spiller.kollisjon_spøkelse(spøkelser):
-        #slutter programmet
-        running = False
+    #
         
                  
     #Tegner Gull
