@@ -81,16 +81,16 @@ class Spøkelse:
 class Spiller: 
     def __init__(self, x: int, y: int):
         self.image = pg.image.load("bilder/pacman.png").convert_alpha()
-        self.image = pg.transform.scale(self.image,
-            (75, 75)
-    
-        )
-        
+        self.image = pg.transform.scale(self.image,    (75, 75)   )
+        self.imageRight = self.image
+        self.imageLeft = pg.transform.flip(self.image, True, False)
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
-
         self.coins = 0
         self.speed = 4
+        self.carriescoin = False
+        
+
     def flytt(self, platforms: List[Platform]):
         keys = pg.key.get_pressed()
         dx = dy = 0
@@ -100,8 +100,10 @@ class Spiller:
             dy += self.speed
         if keys[pg.K_a]:
             dx -= self.speed
+            self.image = self.imageLeft
         if keys[pg.K_d]:
             dx += self.speed
+            self.image = self.imageRight
             
         #kollisjon platform
         self.rect.x += dx
@@ -149,5 +151,8 @@ class Gullmynter:
 
     def tegn(self, vindu: pg.Surface):
         vindu.blit(self.image, self.rect)
+
+
+
     
         

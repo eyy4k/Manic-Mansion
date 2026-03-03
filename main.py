@@ -42,6 +42,7 @@ for i in range(3):
 
 
 spiller = Spiller(rd.randint(0,VINDU_BREDDE//3),rd.randint(0, VINDU_HOYDE))
+endesone = pg.Rect(10, 350, 125, 125)
 
 running = True
 while running:
@@ -51,6 +52,9 @@ while running:
 
     vindu.fill(BLUE)
     pg.draw.rect(vindu, PURPLE, (0, 700, VINDU_BREDDE, (VINDU_BREDDE- 750)))
+
+    #Tegner Endesone
+    pg.draw.rect(vindu, (75, 50, 100), endesone)
     
     #Tegner hindringer
     for p in platforms:
@@ -68,10 +72,16 @@ while running:
     
     #kollksjon gull
     for gull in gull_liste[:]:
-        if spiller.rect.colliderect(gull.rect):
-            spiller.coins += 1
+        if spiller.rect.colliderect(gull.rect) and spiller.carriescoin == False:
             coin_sound.play()
+            spiller.carriescoin = True
             gull_liste.remove(gull)
+
+    if spiller.rect.colliderect(endesone) and spiller.carriescoin:
+        spiller.carriescoin = False
+        spiller.coins += 1
+
+    
     """
     #kollisjon mellom spøkelser 
     for i in range(len(spøkelser)):
