@@ -11,6 +11,9 @@ clock = pg.time.Clock()
 coin_sound = pg.mixer.Sound("bilder/gulllyd.mp3")
 coin_sound.set_volume(0.5)
 
+endesone_sound = pg.mixer.Sound("bilder/forsvinne.mp3")
+endesone_sound.set_volume(0.5)
+
 gull_liste: List[Gullmynter] = []
 for i in range(3):
     rand_x = rd.randint(VINDU_BREDDE//3*2, VINDU_BREDDE)
@@ -43,6 +46,7 @@ for i in range(3):
 
 spiller = Spiller(rd.randint(0,VINDU_BREDDE//3),rd.randint(0, VINDU_HOYDE))
 endesone = pg.Rect(10, 350, 125, 125)
+tekst = pg.font.SysFont("arial", 30)
 
 running = True
 while running:
@@ -69,6 +73,8 @@ while running:
     spiller.tegnspiller(vindu)
     spiller.flytt(platforms)
     spiller.kolisjon(VINDU_BREDDE, VINDU_HOYDE)
+
+    
     
     #kollksjon gull
     for gull in gull_liste[:]:
@@ -80,6 +86,7 @@ while running:
     if spiller.rect.colliderect(endesone) and spiller.carriescoin:
         spiller.carriescoin = False
         spiller.coins += 1
+        endesone_sound.play()
 
     
     """
@@ -110,7 +117,12 @@ while running:
     #Tegner Gull
     for gull in gull_liste:
         gull.tegn(vindu)
+
     
+    
+    # Tegner poeng
+    Poeng = tekst.render(f"Poeng: {spiller.coins}", True, (255, 255, 255))
+    vindu.blit(Poeng, (20, 20))
 
     pg.display.flip()
     clock.tick(FPS)
