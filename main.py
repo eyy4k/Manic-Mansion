@@ -9,7 +9,7 @@ pg.mixer.init()
 vindu = pg.display.set_mode([VINDU_BREDDE, VINDU_HOYDE])
 clock = pg.time.Clock()
 
-bgsti = Path(__file__).parent / "bilder" / "image.png"
+bgsti = Path(__file__).parent / "bilder" / "background.png"
 original_bg = pg.image.load(bgsti).convert_alpha()
 
 width, height = original_bg.size
@@ -142,8 +142,6 @@ while running:
     
     #kollisjon mellom spøkelser og Spiller
     if spiller.kollisjon_spøkelse(spøkelser):
-        dødsoundeffect.play()
-        pg.time.delay(1000)
         #slutter programmet
         running = False
         
