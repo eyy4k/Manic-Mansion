@@ -15,7 +15,7 @@ class Platform:
 
 class Spøkelse:
     def __init__(self, x: int, y: int):
-        self.image = pg.image.load("bilder/spøkelse.png").convert_alpha()
+        self.image = pg.image.load("bilder/pirat.png").convert_alpha()
         self.image = pg.transform.scale(
             self.image,
             (75, 75)
