@@ -133,7 +133,6 @@ while running:
         gull.tegn(vindu)
 
     
-    
     # Tegner poeng
     Poeng = tekst.render(f"Poeng: {spiller.coins}", True, (255, 255, 255))
     vindu.blit(Poeng, (20, 20))
